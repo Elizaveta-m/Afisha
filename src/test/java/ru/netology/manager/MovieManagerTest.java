@@ -52,4 +52,16 @@ class MovieManagerTest {
         MovieItem[] expected = new MovieItem[]{third, second, first};
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void shouldShowItemsLessThenFeedLength() {
+        MovieManager manager = new MovieManager();
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+
+        MovieItem[] actual = manager.getTen(4);
+        MovieItem[] expected = new MovieItem[]{third, second, first};
+        assertArrayEquals(expected, actual);
+    }
 }
