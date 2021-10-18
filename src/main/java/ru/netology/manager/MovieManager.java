@@ -6,7 +6,15 @@ public class MovieManager {
 
     private MovieItem[] items = new MovieItem[0];
 
-    int feedLength = 10;
+    private int feedLength = 10;
+
+    public int getFeedLength() {
+        return feedLength;
+    }
+
+    public void setFeedLength(int feedLength) {
+        this.feedLength = feedLength;
+    }
 
     public MovieManager(int feedLength) {
         this.feedLength = feedLength;
@@ -28,15 +36,14 @@ public class MovieManager {
     public MovieItem[] getTen() {
 
         int length = items.length;
-
-        if (length > 10) {
-            length = items.length - 1;
+        int limit = getFeedLength();
+        if (length > limit) {
+            length = limit;
         } else {
             length = items.length;
         }
         MovieItem[] result = new MovieItem[length];
         for (int i = 0; i < result.length; i++) {
-            result[i] = items[i];
             int index = items.length - i - 1;
             result[i] = items[index];
         }
