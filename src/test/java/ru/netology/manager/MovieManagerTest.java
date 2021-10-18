@@ -187,7 +187,30 @@ class MovieManagerTest {
 
         MovieItem[] actual = manager.getTen();
         MovieItem[] expected = new MovieItem[]{
-                tenth, ninth, eighth, seventh, sixth, fifth, fourth, third };
+                tenth, ninth, eighth, seventh, sixth, fifth, fourth, third};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldShowFeedLessThanLimit() {
+        MovieManager manager = new MovieManager(8);
+        MovieItem first = new MovieItem(1, 1, "Bloodshot", "action", "url1", false);
+        MovieItem second = new MovieItem(2, 2, "Onward", "cartoon", "url2", false);
+        MovieItem third = new MovieItem(3, 3, "Belgrade hotel", "comedy", "url3", false);
+        MovieItem fourth = new MovieItem(4, 4, "Gentlemen", "action", "url4", false);
+        MovieItem fifth = new MovieItem(5, 5, "Invisible man", "horror", "url5", false);
+        MovieItem sixth = new MovieItem(6, 6, "The trolls", "cartoon", "url6", true);
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+
+        MovieItem[] actual = manager.getTen();
+        MovieItem[] expected = new MovieItem[]{
+                sixth, fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
     }
 }
